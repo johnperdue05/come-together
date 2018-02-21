@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <title>Login</title>
+</head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" style="max-width:600px;" th:object="${signup}">
+    <div class="form-group">
+        <label th:for="name">Organization Name</label>
+        <input class="form-control" th:field="*{orgname}" />
+        <span th:errors="*{orgname}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="street-address">Street Address Line 1</label>
+        <input class="form-control" th:field="*{address-line}" />
+        <span th:errors="*{address-line}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="street-address">Street Address Line 2</label>
+        <input class="form-control" th:field="*{address-line}" />
+        <span th:errors="*{address-line}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="city">City</label>
+        <input class="form-control" th:field="*{city}" />
+        <span th:errors="*{city}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="state">State</label>
+        <select name="stateId">
+            <option th:each="state : ${states}"
+                    th:text="${state.name}"
+                    th:value="${state.id}"></option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label th:for="zip">Zip</label>
+        <input class="form-control" th:field="*{zip}" />
+        <span th:errors="*{zip}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="ein">EIN</label>
+        <input class="form-control" th:field="*{ein}" />
+        <span th:errors="*{ein}" class="error"></span>
+    </div>
+    <span>(This is used to verify your organization's nonprofit status.  For more information, please visit our <a href="/about">About</a> page.</span>
+
+    <div class="form-group">
+        <label th:for="username">Username</label>
+        <input class="form-control" th:field="*{username}" />
+        <span th:errors="*{username}" class="error"></span>
+    </div>
+    <span>Usernames must be between 4 and 16 characters, and cannot contain spaces.</span>
+
+    <div class="form-group">
+        <label th:for="email">Email Address</label>
+        <input class="form-control" th:field="*{email}" />
+        <span th:errors="*{email}" class="error"></span>
+    </div>
+
+    <span>Passwords must be between 8 and 16 characters long, are case sensitive, and may contain letters, numbers, and special characters, but no spaces.</span>
+    <div class="form-group">
+        <label th:for="password">Password</label>
+        <input class="form-control" th:field="*{password}" />
+        <span th:errors="*{password}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="verify">Re-enter Password</label>
+        <input class="form-control" th:field="*{verify}" />
+        <span th:errors="*{verify}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="manager">Name of Account Manager</label>
+        <input class="form-control" th:field="*{manager}" />
+        <span th:errors="*{manager}" class="error"></span>
+    </div>
+    <span>This is the main person responsible for managing your Come Together account.  You can change this later under My Profile.</span>
+
+    <input type="submit" value="Sign Up!" />
+</form>
+
+</body>
+</html>

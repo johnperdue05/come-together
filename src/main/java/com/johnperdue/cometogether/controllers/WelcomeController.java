@@ -1,6 +1,7 @@
 package com.johnperdue.cometogether.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -8,9 +9,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class WelcomeController {
 
     @RequestMapping(value="")
-    @ResponseBody
-    public String index(){
-        return "This will be the welcome page";
+    public String index(Model model){
+
+        model.addAttribute("title", "Welcome!");
+        return "welcome";
     }
 
     @RequestMapping(value="login")
