@@ -16,14 +16,16 @@ public class WelcomeController {
     }
 
     @RequestMapping(value="login")
-    @ResponseBody
-    public String login(){
-        return "Here's where you'll be able to login";
+    public String login(Model model){
+
+        model.addAttribute("title", "Login");
+        return "login";
     }
 
     @RequestMapping(value="signup")
-    @ResponseBody
-    public String signup(){
-        return "And here's where you'll be able to sign up!";
+    public String signup(Model model){
+
+        model.addAttribute("title", "Signup");
+        return "signup";
     }
 }

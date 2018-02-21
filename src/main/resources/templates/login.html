@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
-    <meta charset="UTF-8">
     <title>Login</title>
 </head>
 <body class="container">
@@ -10,19 +9,17 @@
 <form method="post" style="max-width:600px;" th:object="${login}">
     <div class="form-group">
         <label th:for="name">Username</label>
-        <input class="form-control" th:field="*{username}" />
-        <span th:errors="*{username}" class="error"></span>
+        <input class="form-control"/> <!-- th:field="*{username}" -->
+        <!-- <span th:errors="*{username}" class="error"></span> -->
     </div>
     <div class="form-group">
         <label th:for="password">Password</label>
-        <input class="form-control" th:field="*{password}" />
-        <span th:errors="*{password}" class="error"></span>
-    </div>
-
+        <input class="form-control"/> <!--th:field="*{password}" -->
+        <!-- <span th:errors="*{password}" class="error"></span> -->
     </div>
 
     <input type="submit" value="Login" />
-</form>
 
+</form>
 </body>
 </html>
