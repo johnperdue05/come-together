@@ -28,14 +28,14 @@
             <span th:errors="*{city}" class="error"></span>-->
     </div>
 
-    <!--<div class="form-group">
+    <div class="form-group">
             <label th:for="state">State</label>
-            <select name="stateId">
+            <select name="state">
                 <option th:each="state : ${states}"
                         th:text="${state.name}"
-                        th:value="${state.id}"></option>
+                        th:value="${state.name}"></option>
             </select>
-        </div>-->
+        </div>
 
     <div class="form-group">
             <label th:for="zip">Zip</label>
@@ -48,7 +48,7 @@
             <input class="form-control" /><!--th:field="*{ein}"
             <span th:errors="*{ein}" class="error"></span>-->
     </div>
-        <span>(This is used to verify your organization's nonprofit status.  For more information, please visit our <a href="/about">About</a> page.</span>
+        <span>(This is used to verify your organization's nonprofit status.  For more information, please visit our <a href="/about">About</a> page.)</span>
 
         <div class="form-group">
             <label th:for="username">Username</label>
@@ -83,7 +83,9 @@
         </div>
         <span>This is the main person responsible for managing your Come Together account.  You can change this later under My Profile.</span>
 
-        <input type="submit" value="Sign Up!" />
+        <div class="form-group">
+            <input type="submit" value="Sign Up!" />
+        </div>
 
 </form>
 </body>

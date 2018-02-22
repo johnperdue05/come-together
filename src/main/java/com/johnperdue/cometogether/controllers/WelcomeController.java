@@ -1,5 +1,6 @@
 package com.johnperdue.cometogether.controllers;
 
+import com.johnperdue.cometogether.models.State;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,8 @@ public class WelcomeController {
     public String signup(Model model){
 
         model.addAttribute("title", "Signup");
+        model.addAttribute("states", State.values());
+
         return "signup";
     }
 }
