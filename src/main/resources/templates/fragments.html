@@ -8,14 +8,20 @@
 
 </head>
 <body>
-<div align="right">
-    <a href="login">Login</a> / <a href="signup">Signup</a>
-</div>
+
 <nav th:fragment="navigation">
     <a href="/browse">Browse</a> |
     <a href="/search">Search</a> |
     <a href="/post">Post</a> |
     <a href="/about">About</a>
+    <div align="right">
+        <span th:if="${user} and ${user.active}">
+            <a href="/logout">Logout</a></span>
+                <span th:unless="${user} and ${user.active}">
+                    <a href="/login">Login</a>
+
+        </span> / <a href="signup">Signup</a>
+    </div>
 </nav>
 
 </body>

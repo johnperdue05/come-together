@@ -6,6 +6,7 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 
@@ -13,32 +14,31 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
     private int id;
     @Column(name = "username")
     @NotEmpty(message = "Please provide a username")
     private String username;
-    /*@Column(name = "orgname")
+    @Column(name = "orgName")
     @NotEmpty(message = "Please provide your organization's name")
     private String orgName;
-    @OneToOne
+    /*@OneToOne
     @JoinTable(name = "user_address", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "address_id"))
-    private Address address;
-    @Column(name = "ein")
-    @NotEmpty(message = "Please provide a valid EIN")
-    private Long EIN; */
+    private Address address;*/
+    @Column(name = "EIN")
+    @NotNull(message = "Please provide a valid EIN")
+    private long EIN;
     @Column(name = "password")
     @Length(min = 8, max = 16, message = "Passwords must be between 8 and 16 characters long")
     @NotEmpty(message = "Please provide a password")
-    @Transient
     private String password;
     @Column(name = "email")
     @Email(message = "Please provide a valid email address")
     @NotEmpty(message = "Please provide an email address")
     private String email;
-    /* @Column(name = "account_manager")
-            private String accountManager;*/
+    @Column(name = "accountManager")
+    private String accountManager;
     /*@OneToMany
     @JoinColumn(name = "author_id")
     private List<Project> projects;
@@ -52,7 +52,7 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles; */
 
-    public User(int userId, String username, /*String orgName, Address address, Long EIN, */String password, String email){
+    public User(int userId, String username, /*String orgName, Address address, long EIN, */String password, String email){
         this.id = userId;
         this.username = username;
         /*this.orgName = orgName;
@@ -73,7 +73,7 @@ public class User {
         this.username = username;
     }
 
-    /*public String getOrgName() {
+    public String getOrgName() {
         return orgName;
     }
 
@@ -81,21 +81,21 @@ public class User {
         this.orgName = orgName;
     }
 
-    public Address getAddress() {
+    /*public Address getAddress() {
         return address;
     }
 
     public void setAddress(Address address) {
         this.address = address;
-    }
+    }*/
 
-    public Long getEIN() {
+    public long getEIN() {
         return EIN;
     }
 
-    public void setEIN(Long EIN) {
+    public void setEIN(long EIN) {
         this.EIN = EIN;
-    }*/
+    }
 
     public String getPassword() {
         return password;
@@ -113,13 +113,13 @@ public class User {
         this.email = email;
     }
 
-    /*public String getAccountManager() {
+    public String getAccountManager() {
         return accountManager;
     }
 
     public void setAccountManager(String accountManager) {
         this.accountManager = accountManager;
-    }*/
+    }
 
     public int getId() {
         return id;
