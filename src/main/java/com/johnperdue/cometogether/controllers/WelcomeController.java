@@ -1,6 +1,6 @@
 package com.johnperdue.cometogether.controllers;
 
-//import com.johnperdue.cometogether.models.State;
+import com.johnperdue.cometogether.models.State;
 //import com.johnperdue.cometogether.models.Project;
 import com.johnperdue.cometogether.models.User;
 //import com.johnperdue.cometogether.models.data.ProjectDao;
@@ -71,7 +71,7 @@ public class WelcomeController {
 
         model.addAttribute("title", "Signup");
         model.addAttribute(new User());
-        /* model.addAttribute("states", State.values()); */
+        model.addAttribute("states", State.values());
 
         return "signup";
     }

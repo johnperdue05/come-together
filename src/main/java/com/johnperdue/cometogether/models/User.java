@@ -23,12 +23,19 @@ public class User {
     @Column(name = "orgName")
     @NotEmpty(message = "Please provide your organization's name")
     private String orgName;
-    /*@OneToOne
-    @JoinTable(name = "user_address", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "address_id"))
-    private Address address;*/
+    @Column(name = "address_line_1")
+    private String addressLine1;
+    @Column(name = "address_line_2")
+    private String addressLine2;
+    @Column(name="city")
+    private String city;
+    @Column(name = "state")
+    private State state;
+    @Column(name = "zip")
+    private Integer zip;
     @Column(name = "EIN")
     @NotNull(message = "Please provide a valid EIN")
-    private long EIN;
+    private Long EIN;
     @Column(name = "password")
     @Length(min = 8, max = 16, message = "Passwords must be between 8 and 16 characters long")
     @NotEmpty(message = "Please provide a password")
@@ -52,12 +59,11 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles; */
 
-    public User(int userId, String username, /*String orgName, Address address, long EIN, */String password, String email){
+    public User(int userId, String username, String orgName, /*long EIN, */String password, String email){
         this.id = userId;
         this.username = username;
-        /*this.orgName = orgName;
-        this.address = address;
-        this.EIN = EIN;*/
+        this.orgName = orgName;
+        /*this.EIN = EIN;*/
         this.password = password;
         this.email = email;
     }
@@ -81,19 +87,11 @@ public class User {
         this.orgName = orgName;
     }
 
-    /*public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }*/
-
-    public long getEIN() {
+    public Long getEIN() {
         return EIN;
     }
 
-    public void setEIN(long EIN) {
+    public void setEIN(Long EIN) {
         this.EIN = EIN;
     }
 
@@ -132,6 +130,49 @@ public class User {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+
+
+    public Integer getZip() {
+        return zip;
+    }
+
+    public void setZip(Integer zip) {
+        this.zip = zip;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddressLine2() {
+        return addressLine2;
+    }
+
+    public void setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
+    }
+
 
     /* public void setRoles(Set<Role> roles) {
         this.roles = roles;
