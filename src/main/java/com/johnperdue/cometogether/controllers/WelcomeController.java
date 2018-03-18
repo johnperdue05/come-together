@@ -29,7 +29,7 @@ public class WelcomeController {
     public String index(Model model){
 
         model.addAttribute("title", "Welcome!");
-        model.addAttribute("user", activeUser);
+        model.addAttribute("activeUser", activeUser);
         return "welcome";
     }
 
@@ -37,7 +37,7 @@ public class WelcomeController {
     public String login(Model model){
 
         model.addAttribute("title", "Login");
-        model.addAttribute("user", activeUser);
+        model.addAttribute("activeUser", activeUser);
         return "login";
     }
     @RequestMapping(value="login", method = RequestMethod.POST)
@@ -51,12 +51,11 @@ public class WelcomeController {
             if (uName.equals(username) && pass.equals(password)){
                 user.setActive(true);
                 activeUser = user;
-                model.addAttribute("user", activeUser);
-                System.out.println(activeUser.getUsername());
+                model.addAttribute("activeUser", activeUser);
                 return "welcome";
             }
         }
-        model.addAttribute("user", activeUser);
+        model.addAttribute("activeUser", activeUser);
         return "redirect:";
     }
     @RequestMapping(value="logout")
@@ -70,6 +69,7 @@ public class WelcomeController {
     public String displaySignupForm(Model model){
 
         model.addAttribute("title", "Signup");
+        model.addAttribute("activeUser", activeUser);
         model.addAttribute(new User());
         model.addAttribute("states", State.values());
 
@@ -91,6 +91,15 @@ public class WelcomeController {
         }else {
             return "signup";
         }
+    }
+    //TODO:  Figure out why the drop button isn't working right
+    @RequestMapping(value="user/{userId}", method = RequestMethod.GET)
+    public String viewUserProfile(Model model, @PathVariable int userId){
+        User aUser = userDao.findOne(userId);
+        model.addAttribute("title", "User Profile");
+        model.addAttribute("activeUser", activeUser);
+        model.addAttribute("user", aUser);
+        return "user";
     }
     /*@RequestMapping(value="post", method = RequestMethod.GET)
     public String displayPostForm(Model model, User activeUser){

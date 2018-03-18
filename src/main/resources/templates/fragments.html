@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:fragment="head">
     <title th:text="${title}">Come Together</title>
-
+    <link rel="stylesheet" type="text/css" href="styles.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -14,13 +14,17 @@
     <a href="/search">Search</a> |
     <a href="/post">Post</a> |
     <a href="/about">About</a>
-    <div align="right">
-        <span th:if="${user} and ${user.active}">
-            <a href="/logout">Logout</a></span>
-                <span th:unless="${user} and ${user.active}">
+    <div align="right" th:object="${activeUser}">
+        <span th:if="${activeUser} and ${activeUser.active}">
+            <div class="dropdown">
+                <a class="dropbtn" th:text="${activeUser.username}"></a>
+                <div class="dropdown-content">
+                    <a href="/user" th:href="*{'/user/' + id}">My Profile</a>
+                    <a href="/logout">Logout</a></div></div></span>
+                <span th:unless="${activeUser} and ${activeUser.active}">
                     <a href="/login">Login</a>
 
-        </span> / <a href="signup">Signup</a>
+        </span> / <a href="/signup">Signup</a>
     </div>
 </nav>
 
