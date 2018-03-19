@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -46,12 +47,12 @@ public class User {
     private String email;
     @Column(name = "accountManager")
     private String accountManager;
-    /*@OneToMany
+    @OneToMany
     @JoinColumn(name = "author_id")
-    private List<Project> projects;
-       @OneToMany
-        @JoinTable(name = "user_proposals", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "proposal_id"))
-        private List<Proposal>proposals; */
+    private List<Project> projects = new ArrayList<>();
+    /*@OneToMany
+    @JoinTable(name = "user_proposals", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "proposal_id"))
+    private List<Proposal>proposals; */
     @Column(name = "active")
     private boolean active;
 
@@ -182,12 +183,12 @@ public class User {
         return roles;
     } */
 
-    /*public List<Project> getProjects() {
+    public List<Project> getProjects() {
         return projects;
     }
 
-    public void setProjects(List<Project> projects) {
-        this.projects = projects;
-    }*/
+    public void addProject(Project project) {
+        this.projects.add(project);
+    }
 
 }

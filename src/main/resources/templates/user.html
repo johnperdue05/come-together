@@ -6,12 +6,19 @@
 <body class="container">
 <h1 th:text="${title}">Default Title</h1>
 <nav th:replace="fragments :: navigation"></nav>
-<p th:object="${user}">
+<span th:object="${user}">
     <div th:text="*{orgName}"></div>
     <div th:text="*{addressLine1}"></div>
     <div th:text="*{addressLine2}"></div>
-    <div th:text="*{city + ', ' + state + ' ' + zip}"></div>
-</p>
+    <div th:text="*{city + ', ' + state + ' ' + zip}"></div></span>
+<div th:unless="${user.projects} and ${user.projects.size()}">You haven't posted any projects yet.  Click <a href="/post">here</a> to post a new project.</div>
+<span th:object="${user}">
+    <div th:each="project : *{projects}">
+    <a href="/view" th:href="*{'/view/' + id}"><div th:text="${project.title}">
+    </div></a>
+    <div th:text="${project.description}"></div>
+</div>
+</span>
 
 </body>
 </html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <title>User Profile</title>
+</head>
+<body class="container">
+<h1 th:text="${title}">Default Title</h1>
+<nav th:replace="fragments :: navigation"></nav>
+<div th:object="${project}">
+    <h4 th:text="*{title}"></h4>
+    <p th:text="*{description}"></p>
+</div>
+</body>
+</html>
